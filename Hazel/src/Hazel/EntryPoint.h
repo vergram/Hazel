@@ -10,7 +10,6 @@ int main(int argc, char** argv)
 	HZ_CORE_WARN("Hazel Initialized!");
 	int a = 5;
 	HZ_INFO("var a = {0}", a);
-	::Hazel::Log::GetClientLogger()->error("test");
 
 	auto app = Hazel::CreateApplication();
 	app->Run();
