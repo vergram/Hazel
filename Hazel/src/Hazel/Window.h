@@ -36,7 +36,7 @@ namespace Hazel {
 		virtual unsigned int GetHeight() const = 0;
 
 		// Window Attribute
-		virtual void SetEventCallbackFn(const EventCallbackFn& callback) = 0;
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enable) = 0;
 		virtual bool IsVSync() const = 0;
 
