@@ -18,7 +18,7 @@ namespace Hazel {
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		m_Layers.emplace(m_LayerInsert, layer);
+		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
