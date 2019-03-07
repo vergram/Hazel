@@ -1,9 +1,9 @@
 #include "hzpch.h"
 #include "Application.h"
 
-#include "Hazel/Log.h"
+#include <glad/glad.h>
 
-#include "glad/glad.h"
+#include "Input.h"
 
 namespace Hazel {
 
@@ -13,7 +13,7 @@ namespace Hazel {
 
 	Application::Application()
 	{
-		HZ_CORE_ASSERTS(!s_Instance, "Application already exists!");
+		HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());

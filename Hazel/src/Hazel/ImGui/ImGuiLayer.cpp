@@ -81,7 +81,7 @@ namespace Hazel {
 
 	void ImGuiLayer::OnEvent(Event& event)
 	{
-		HZ_CORE_TRACE("{0}", event);
+		//HZ_CORE_TRACE("{0}", event);
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<MouseMovedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
 		dispatcher.Dispatch<MouseScrolledEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
