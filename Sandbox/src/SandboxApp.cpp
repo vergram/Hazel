@@ -1,4 +1,5 @@
 #include <Hazel.h>
+#include "imgui/imgui.h"
 
 class ExampleLayer : public Hazel::Layer
 {
@@ -13,6 +14,13 @@ public:
 		{
 			HZ_TRACE("Polling Key: {0}", (char)HZ_KEY_A);
 		}
+	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello world!");
+		ImGui::End();
 	}
 
 	void OnEvent(Hazel::Event& event) override
@@ -32,7 +40,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Hazel::ImGuiLayer());
 	}
 
 	~Sandbox()
