@@ -34,6 +34,8 @@ namespace Hazel {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
+		unsigned int m_VAO, m_VBO, m_IBO;
+
 		static Application* s_Instance;
 	};
 
