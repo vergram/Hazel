@@ -3,6 +3,15 @@
 
 namespace Hazel {
 
-	RendererAPI Renderer::s_RendererAPI = RendererAPI::OPENGL;
+	void Renderer::BeginScene()
+	{}
+
+	void Renderer::EndScene()
+	{}
+
+	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+	{
+		RenderCommand::DrawIndexed(vertexArray);
+	}
 
 }
