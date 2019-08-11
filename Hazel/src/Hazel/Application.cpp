@@ -1,9 +1,11 @@
 #include "hzpch.h"
 #include "Application.h"
-
+#include "Hazel/Core/Timestep.h"
 #include "Input.h"
 
 #include "Renderer/Renderer.h"
+
+#include "GLFW/glfw3.h"
 
 namespace Hazel {
 
@@ -54,12 +56,17 @@ namespace Hazel {
 	{
 		while (m_Running)
 		{
+			float time = (float)glfwGetTime();  // just for now, it will be update in Platform.GetTime() 
+			Timestep ts = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+			HZ_TRACE("Timestep {0}s, {1}ms", ts.GetSeconds(), ts.GetMillionSeconds());
+
 			RenderCommand::SetClearColor({ 0.25f, 0.5f, 0.6f, 1.0f });
 			RenderCommand::Clear();
 
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(ts);
 			}
 
 			m_ImGuiLayer->Begin();
