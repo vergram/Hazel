@@ -13,10 +13,12 @@ namespace Hazel {
 	void Renderer::EndScene()
 	{}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
+	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
 		shader->UniformMat4f("u_ViewProjectionMatrix", s_SceneData->ViewProjectionMatrix);
+		shader->UniformMat4f("u_TransformMatrix", transform);
+
 		RenderCommand::DrawIndexed(vertexArray);
 	}
 

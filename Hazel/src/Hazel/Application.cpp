@@ -59,7 +59,6 @@ namespace Hazel {
 			float time = (float)glfwGetTime();  // just for now, it will be update in Platform.GetTime() 
 			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
-			HZ_TRACE("Timestep {0}s, {1}ms", ts.GetSeconds(), ts.GetMillionSeconds());
 
 			RenderCommand::SetClearColor({ 0.25f, 0.5f, 0.6f, 1.0f });
 			RenderCommand::Clear();
