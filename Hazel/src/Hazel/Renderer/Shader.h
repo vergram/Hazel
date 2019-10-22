@@ -2,22 +2,17 @@
 
 #include <string>
 
-#include <glm/glm.hpp>
-
 namespace Hazel {
 
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSource, const std::string& fragmentSource);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void Bind();
-		void Unbind();
+		virtual void Bind() = 0;
+		virtual void Unbind() = 0;
 
-		void UniformMat4f(const std::string& name, const glm::mat4& matrix);
-	private:
-		uint32_t m_RenderID;
+		static Shader* Create(const std::string& vertexSource, const std::string& fragmentSource);
 	};
 
 }
