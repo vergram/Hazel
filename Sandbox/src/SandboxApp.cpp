@@ -9,7 +9,7 @@
 class ExampleLayer : public Hazel::Layer
 {
 public:
-	ExampleLayer():Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+	ExampleLayer():Layer("Example"), m_CameraController(1280.0f/720.0f, true)
 	{
 		m_VertexArray.reset(Hazel::VertexArray::Create());
 
@@ -98,26 +98,11 @@ public:
 
 	void OnUpdate(Hazel::Timestep ts) override
 	{
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_UP))
-			m_CameraPos.y += m_CameraMoveSpeed * ts;
-		else if (Hazel::Input::IsKeyPressed(HZ_KEY_DOWN))
-			m_CameraPos.y -= m_CameraMoveSpeed * ts;
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_RIGHT))
-			m_CameraPos.x += m_CameraMoveSpeed * ts;
-		else if (Hazel::Input::IsKeyPressed(HZ_KEY_LEFT))
-			m_CameraPos.x -= m_CameraMoveSpeed * ts;
-
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
-			m_CameraRotation += m_CameraRotateSpeed * ts;
-		else if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
-			m_CameraRotation -= m_CameraRotateSpeed * ts;
-
-		m_Camera.SetPosition(m_CameraPos);
-		m_Camera.SetRotation(m_CameraRotation);
+		m_CameraController.OnUpdate(ts);
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		Hazel::Renderer::BeginScene(m_Camera);
+		Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_color", m_SquareColor);
@@ -157,6 +142,7 @@ public:
 
 	void OnEvent(Hazel::Event& event) override
 	{
+		m_CameraController.OnEvent(event);
 	}
 
 private:
@@ -169,8 +155,7 @@ private:
 	Hazel::Ref<Hazel::Texture2D> m_Texture;
 	Hazel::Ref<Hazel::Texture2D> m_ChernoLogoTexture;
 
-
-	Hazel::OrthographicCamera m_Camera;
+	Hazel::OrthographicCameraController m_CameraController;
 	
 	glm::vec3 m_CameraPos = { 0.0f, 0.0f, 0.0f };
 	float m_CameraMoveSpeed = 5.0f;
