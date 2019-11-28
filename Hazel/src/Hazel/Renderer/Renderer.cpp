@@ -19,6 +19,11 @@ namespace Hazel {
 	void Renderer::EndScene()
 	{}
 
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		RenderCommand::SetViewport(width, height);
+	}
+
 	void Renderer::Submit(const Ref<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		std::dynamic_pointer_cast<OpenGLShader>(shader)->Bind();

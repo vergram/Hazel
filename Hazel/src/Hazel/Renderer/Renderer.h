@@ -14,6 +14,8 @@ namespace Hazel {
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
 
+		static void OnWindowResize(unsigned int width, unsigned int height);
+
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
 		static void Submit(const Ref<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
