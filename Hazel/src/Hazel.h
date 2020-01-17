@@ -22,7 +22,3 @@
 #include "Hazel/Renderer/OrthographicCameraController.h"
 
 #include "Hazel/ImGui/ImGuiLayer.h"
-
-// -----Entry Point-----------------
-#include "Hazel/Core/EntryPoint.h"
-// -----Entry Point-----------------
