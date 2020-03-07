@@ -18,6 +18,12 @@ namespace Hazel {
 		virtual void Bind();
 		virtual void Unbind();
 
+		virtual void SetInt(const std::string& name, int value) override;
+		virtual void SetFloat3(const std::string& name, const glm::vec3& vec3) override;
+		virtual void SetFloat4(const std::string& name, const glm::vec4& vec4) override;
+		virtual void SetMat4(const std::string& name, const glm::mat4& mat4) override;
+
+
 		virtual const std::string& GetName() const override { return m_Name; }
 
 		void UploadUniformInt(const std::string& name, int value);
